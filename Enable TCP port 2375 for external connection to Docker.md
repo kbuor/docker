@@ -3,7 +3,7 @@
 See this issue.
 Docker best practise to Control and configure Docker with systemd.
 
-> Create daemon.json file in /etc/docker:
+> Create daemon.json file in `/etc/docker`:
 ```shell
 {
  "debug": true,
