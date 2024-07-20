@@ -46,22 +46,22 @@ ExecStart=
 ExecStart=/usr/bin/dockerd
 ```
 
-Phần [Service]
+> [Service]
 
 [Service]: Đây là phần để chỉ định rằng bạn đang ghi đè các tham số trong phần dịch vụ của cấu hình Docker.
 
-ExecStart=
+> ExecStart=
 
-ExecStart=: Dòng này nhằm xóa bỏ (reset) thiết lập ExecStart mặc định. Trong các tệp cấu hình systemd, khi bạn chỉ định một giá trị rỗng cho ExecStart, bạn sẽ xóa lệnh khởi động mặc định của dịch vụ đó.
+`ExecStart=`: Dòng này nhằm xóa bỏ (reset) thiết lập ExecStart mặc định. Trong các tệp cấu hình systemd, khi bạn chỉ định một giá trị rỗng cho ExecStart, bạn sẽ xóa lệnh khởi động mặc định của dịch vụ đó.
 
-ExecStart=/usr/bin/dockerd
+> ExecStart=/usr/bin/dockerd
 
-ExecStart=/usr/bin/dockerd: Dòng này định nghĩa lại lệnh khởi động cho dịch vụ Docker. Ở đây, bạn thiết lập lại lệnh để khởi chạy Docker daemon (dockerd) từ đường dẫn /usr/bin/dockerd.
+`ExecStart=/usr/bin/dockerd`: Dòng này định nghĩa lại lệnh khởi động cho dịch vụ Docker. Ở đây, bạn thiết lập lại lệnh để khởi chạy Docker daemon (dockerd) từ đường dẫn /usr/bin/dockerd.
 
 
 ### Tại sao cần làm điều này?
 
-Ghi đè cài đặt mặc định: Khi bạn muốn tùy chỉnh cách Docker daemon khởi động mà không sửa trực tiếp tệp dịch vụ gốc (/lib/systemd/system/docker.service), bạn tạo tệp ghi đè trong thư mục /etc/systemd/system/docker.service.d/.
+Ghi đè cài đặt mặc định: Khi bạn muốn tùy chỉnh cách Docker daemon khởi động mà không sửa trực tiếp tệp dịch vụ gốc (`/lib/systemd/system/docker.service`), bạn tạo tệp ghi đè trong thư mục `/etc/systemd/system/docker.service.d/`.
 
 Bảo mật và quản lý: Việc ghi đè cấu hình thông qua tập tin override.conf giúp dễ dàng quản lý và cập nhật mà không ảnh hưởng tới tệp dịch vụ gốc. Nếu Docker được cập nhật, các thiết lập tùy chỉnh của bạn sẽ không bị ghi đè.
 
