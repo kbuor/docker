@@ -36,7 +36,7 @@ ExecStart=/usr/bin/dockerd
 
 1. Thư mục và tệp cấu hình
 
-Thư mục /etc/systemd/system/docker.service.d/ là nơi chứa các tệp cấu hình bổ sung để ghi đè (override) các thiết lập mặc định của dịch vụ Docker (docker.service). Tập tin override.conf là tập tin cấu hình tùy chỉnh được tạo ra để thay đổi một hoặc nhiều tham số của dịch vụ Docker.
+Thư mục `/etc/systemd/system/docker.service.d/` là nơi chứa các tệp cấu hình bổ sung để ghi đè (override) các thiết lập mặc định của dịch vụ Docker (`docker.service`). Tập tin `override.conf` là tập tin cấu hình tùy chỉnh được tạo ra để thay đổi một hoặc nhiều tham số của dịch vụ Docker.
 
 2. Nội dung của tệp override.conf
 
@@ -59,10 +59,10 @@ ExecStart=/usr/bin/dockerd
 `ExecStart=/usr/bin/dockerd`: Dòng này định nghĩa lại lệnh khởi động cho dịch vụ Docker. Ở đây, bạn thiết lập lại lệnh để khởi chạy Docker daemon (dockerd) từ đường dẫn /usr/bin/dockerd.
 
 
-### Tại sao cần làm điều này?
+## Tại sao cần làm điều này?
 
-Ghi đè cài đặt mặc định: Khi bạn muốn tùy chỉnh cách Docker daemon khởi động mà không sửa trực tiếp tệp dịch vụ gốc (`/lib/systemd/system/docker.service`), bạn tạo tệp ghi đè trong thư mục `/etc/systemd/system/docker.service.d/`.
+1. Ghi đè cài đặt mặc định: Khi bạn muốn tùy chỉnh cách Docker daemon khởi động mà không sửa trực tiếp tệp dịch vụ gốc (`/lib/systemd/system/docker.service`), bạn tạo tệp ghi đè trong thư mục `/etc/systemd/system/docker.service.d/`.
 
-Bảo mật và quản lý: Việc ghi đè cấu hình thông qua tập tin override.conf giúp dễ dàng quản lý và cập nhật mà không ảnh hưởng tới tệp dịch vụ gốc. Nếu Docker được cập nhật, các thiết lập tùy chỉnh của bạn sẽ không bị ghi đè.
+2. Bảo mật và quản lý: Việc ghi đè cấu hình thông qua tập tin override.conf giúp dễ dàng quản lý và cập nhật mà không ảnh hưởng tới tệp dịch vụ gốc. Nếu Docker được cập nhật, các thiết lập tùy chỉnh của bạn sẽ không bị ghi đè.
 
-Tùy chỉnh nâng cao: Bạn có thể thêm các tham số tùy chỉnh khác cho Docker daemon. Ví dụ: Bạn có thể thêm các tùy chọn dòng lệnh bổ sung cho dockerd để thay đổi cổng mặc định, địa chỉ API, hoặc các thiết lập mạng khác.
+3. Tùy chỉnh nâng cao: Bạn có thể thêm các tham số tùy chỉnh khác cho Docker daemon. Ví dụ: Bạn có thể thêm các tùy chọn dòng lệnh bổ sung cho dockerd để thay đổi cổng mặc định, địa chỉ API, hoặc các thiết lập mạng khác.
